@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:wooden_pickaxe"
+        },
+        "D": {
+            "item": "minecraft:wooden_shovel"
+        },
+        "U": {
+            "item": "minecraft:wooden_axe"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:paxelwood",
+        "count": 1
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "tag": "extendedtools:pickaxetin"
+        },
+        "D": {
+            "tag": "extendedtools:shoveltin"
+        },
+        "U": {
+            "tag": "extendedtools:axetin"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:paxeltin",
+        "count": 1
+    }
+}

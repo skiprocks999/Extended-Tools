@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iii",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "i": {
+            "tag": "forge:ingots/silver"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:pickaxesilver",
+        "count": 1
+    }
+}

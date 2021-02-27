@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "tag": "extendedtools:pickaxecopper"
+        },
+        "D": {
+            "tag": "extendedtools:shovelcopper"
+        },
+        "U": {
+            "tag": "extendedtools:axecopper"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:paxelcopper",
+        "count": 1
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ii",
+        " /",
+        " /"
+    ],
+    "key": {
+        "i": {
+            "tag": "forge:ingots/vanadium"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:hoevanadium",
+        "count": 1
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ii",
+        "i/",
+        " /"
+    ],
+    "key": {
+        "i": {
+            "tag": "forge:ingots/steel"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:axesteel",
+        "count": 1
+    }
+}

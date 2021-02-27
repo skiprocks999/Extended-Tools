@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_pickaxe"
+        },
+        "D": {
+            "item": "minecraft:gold_shovel"
+        },
+        "U": {
+            "item": "minecraft:gold_axe"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:paxelgold",
+        "count": 1
+    }
+}

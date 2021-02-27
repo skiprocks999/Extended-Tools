@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "tag": "extendedtools:pickaxesilver"
+        },
+        "D": {
+            "tag": "extendedtools:shovelsilver"
+        },
+        "U": {
+            "tag": "extendedtools:axesilver"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "extendedtools:paxelsilver",
+        "count": 1
+    }
+}
