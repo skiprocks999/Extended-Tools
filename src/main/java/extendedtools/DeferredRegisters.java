@@ -1,0 +1,70 @@
+package extendedtools;
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.base.Supplier;
+
+import extendedtools.common.tab.item.ExtendedItemTier;
+import extendedtools.common.tab.item.PaxelItem;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+
+@EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
+public class DeferredRegisters {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, References.ID);
+
+    static {
+	List<String> types = Arrays.<String>asList("axe", "hoe", "pickaxe", "shovel", "sword", "paxel");
+	for (String type : types) {
+	    for (ExtendedItemTier tier : ExtendedItemTier.values()) {
+		Item reg = null;
+		switch (type) {
+		case "axe":
+		    reg = new AxeItem(tier, tier.getAttackDamage(), -3.0f, new Properties().group(References.CORETAB));
+		    break;
+		case "hoe":
+		    reg = new HoeItem(tier, (int) tier.getAttackDamage(), 0f,
+			    new Properties().group(References.CORETAB));
+		    break;
+		case "pickaxe":
+		    reg = new PickaxeItem(tier, (int) tier.getAttackDamage(), -2.8f,
+			    new Properties().group(References.CORETAB));
+		    break;
+		case "shovel":
+		    reg = new ShovelItem(tier, tier.getAttackDamage(), -3.0f,
+			    new Properties().group(References.CORETAB));
+		    break;
+		case "sword":
+		    reg = new SwordItem(tier, (int) tier.getAttackDamage(), -2.4f,
+			    new Properties().group(References.CORETAB));
+		    break;
+		case "paxel":
+		    reg = new PaxelItem(tier, new Properties().group(References.CORETAB));
+		    break;
+		}
+		ITEMS.register(type + tier.tag(), supplier(reg));
+	    }
+	}
+	for (ItemTier tier : ItemTier.values()) {
+	    ITEMS.register("paxel" + tier.name().toLowerCase(),
+		    supplier(new PaxelItem(tier, new Properties().group(References.CORETAB))));
+	}
+
+    }
+
+    private static <T extends IForgeRegistryEntry<T>> Supplier<? extends T> supplier(T entry) {
+	return () -> entry;
+    }
+}
