@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:gold_pickaxe"
+            "item": "minecraft:golden_pickaxe"
         },
         "D": {
-            "item": "minecraft:gold_shovel"
+            "item": "minecraft:golden_shovel"
         },
         "U": {
-            "item": "minecraft:gold_axe"
+            "item": "minecraft:golden_axe"
         },
         "/": {
             "item": "minecraft:stick"
