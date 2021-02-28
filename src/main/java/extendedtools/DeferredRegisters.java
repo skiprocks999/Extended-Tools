@@ -5,8 +5,11 @@ import java.util.List;
 
 import com.google.common.base.Supplier;
 
-import extendedtools.common.tab.item.ExtendedItemTier;
-import extendedtools.common.tab.item.PaxelItem;
+import extendedtools.common.item.ArmorMaterialList;
+import extendedtools.common.item.ExtendedItemTier;
+import extendedtools.common.item.PaxelItem;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
@@ -61,7 +64,14 @@ public class DeferredRegisters {
 	    ITEMS.register("paxel" + tier.name().toLowerCase(),
 		    supplier(new PaxelItem(tier, new Properties().group(References.CORETAB))));
 	}
-
+	for (ArmorMaterialList armor : ArmorMaterialList.values()) {
+	    for (EquipmentSlotType type : EquipmentSlotType.values()) {
+		if (type != EquipmentSlotType.MAINHAND && type != EquipmentSlotType.OFFHAND) {
+		    ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""),
+			    supplier(new ArmorItem(armor, type, new Properties().group(References.CORETAB))));
+		}
+	    }
+	}
     }
 
     private static <T extends IForgeRegistryEntry<T>> Supplier<? extends T> supplier(T entry) {

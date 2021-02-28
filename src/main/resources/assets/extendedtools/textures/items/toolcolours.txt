@@ -1,4 +1,4 @@
-bronze: base diamond (hue, sat) (-131, 120)
+bronze: base diamond (hue, sat) (-131, 120) + armor -5
 copper: base diamond (hue, sat) (-143, 100)
 lead: base diamond (hue, sat, brightness) (51, 27, 10)
 silver: base diamond (hue, sat, brightness) (51, 15, 10)

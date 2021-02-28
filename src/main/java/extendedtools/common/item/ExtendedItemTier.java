@@ -1,4 +1,4 @@
-package extendedtools.common.tab.item;
+package extendedtools.common.item;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemTier;
@@ -12,7 +12,8 @@ public enum ExtendedItemTier implements IItemTier {
     COPPER(1, ItemTier.STONE.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.STONE.getAttackDamage(), 5),
     LEAD(2, ItemTier.DIAMOND.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
     VANADIUM(2, ItemTier.STONE.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    SILVER(2, 600, ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(), 5);
+    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(),
+	    5);
 
     private final int harvestLevel;
     private final int maxUses;

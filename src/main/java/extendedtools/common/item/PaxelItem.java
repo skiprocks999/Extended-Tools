@@ -1,4 +1,4 @@
-package extendedtools.common.tab.item;
+package extendedtools.common.item;
 
 import java.util.Collections;
 import java.util.Set;
