@@ -34,16 +34,15 @@ public class PaxelItem extends ToolItem {
 	super(4, -2.4f, tier, Collections.emptySet(),
 		prop.addToolType(ToolType.AXE, tier.getHarvestLevel()).addToolType(ToolType.HOE, tier.getHarvestLevel())
 			.addToolType(ToolType.PICKAXE, tier.getHarvestLevel())
-			.addToolType(ToolType.SHOVEL, tier.getHarvestLevel()));
+			.addToolType(ToolType.SHOVEL, tier.getHarvestLevel()).maxDamage(tier.getMaxUses() * 2));
     }
 
     @Override
     public boolean canHarvestBlock(BlockState state) {
 	ToolType harvestTool = state.getHarvestTool();
-	if (harvestTool == ToolType.AXE || harvestTool == ToolType.PICKAXE || harvestTool == ToolType.SHOVEL) {
-	    if (getTier().getHarvestLevel() >= state.getHarvestLevel()) {
-		return true;
-	    }
+	if ((harvestTool == ToolType.AXE || harvestTool == ToolType.PICKAXE || harvestTool == ToolType.SHOVEL)
+		&& getTier().getHarvestLevel() >= state.getHarvestLevel()) {
+	    return true;
 	}
 	if (state.isIn(Blocks.SNOW) || state.isIn(Blocks.SNOW_BLOCK)) {
 	    return true;
@@ -82,7 +81,7 @@ public class PaxelItem extends ToolItem {
 	    if (foundResult != null && world.isAirBlock(pos.up())) {
 		world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		result = foundResult;
-	    } else if (state.getBlock() instanceof CampfireBlock && state.get(CampfireBlock.LIT)) {
+	    } else if (state.getBlock() instanceof CampfireBlock && state.get(CampfireBlock.LIT) == Boolean.TRUE) {
 		if (!world.isRemote) {
 		    world.playEvent(null, WorldEvents.FIRE_EXTINGUISH_SOUND, pos, 0);
 		}
