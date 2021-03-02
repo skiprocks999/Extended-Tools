@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "tag": "extendedtools:pickaxecopper"
+            "item": "extendedtools:pickaxecopper"
         },
         "D": {
-            "tag": "extendedtools:shovelcopper"
+            "item": "extendedtools:shovelcopper"
         },
         "U": {
-            "tag": "extendedtools:axecopper"
+            "item": "extendedtools:axecopper"
         },
         "/": {
             "item": "minecraft:stick"

@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "tag": "extendedtools:pickaxelead"
+            "item": "extendedtools:pickaxelead"
         },
         "D": {
-            "tag": "extendedtools:shovellead"
+            "item": "extendedtools:shovellead"
         },
         "U": {
-            "tag": "extendedtools:axelead"
+            "item": "extendedtools:axelead"
         },
         "/": {
             "item": "minecraft:stick"

@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "tag": "extendedtools:pickaxevanadium"
+            "item": "extendedtools:pickaxevanadium"
         },
         "D": {
-            "tag": "extendedtools:shovelvanadium"
+            "item": "extendedtools:shovelvanadium"
         },
         "U": {
-            "tag": "extendedtools:axevanadium"
+            "item": "extendedtools:axevanadium"
         },
         "/": {
             "item": "minecraft:stick"

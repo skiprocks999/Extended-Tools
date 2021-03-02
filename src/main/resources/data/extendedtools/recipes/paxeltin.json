@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "tag": "extendedtools:pickaxetin"
+            "item": "extendedtools:pickaxetin"
         },
         "D": {
-            "tag": "extendedtools:shoveltin"
+            "item": "extendedtools:shoveltin"
         },
         "U": {
-            "tag": "extendedtools:axetin"
+            "item": "extendedtools:axetin"
         },
         "/": {
             "item": "minecraft:stick"
