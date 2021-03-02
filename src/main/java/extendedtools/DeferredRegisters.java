@@ -27,7 +27,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
 public class DeferredRegisters {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, References.ID);
-
+    public static PaxelItem icon;
     static {
 	List<String> types = Arrays.<String>asList("axe", "hoe", "pickaxe", "shovel", "sword", "paxel");
 	for (String type : types) {
@@ -56,13 +56,18 @@ public class DeferredRegisters {
 		case "paxel":
 		    reg = new PaxelItem(tier, new Properties().group(References.CORETAB));
 		    break;
+		default:
+		    break;
 		}
 		ITEMS.register(type + tier.tag(), supplier(reg));
 	    }
 	}
 	for (ItemTier tier : ItemTier.values()) {
-	    ITEMS.register("paxel" + tier.name().toLowerCase(),
-		    supplier(new PaxelItem(tier, new Properties().group(References.CORETAB))));
+	    PaxelItem item = new PaxelItem(tier, new Properties().group(References.CORETAB));
+	    ITEMS.register("paxel" + tier.name().toLowerCase(), supplier(item));
+	    if (tier == ItemTier.NETHERITE) {
+		icon = item;
+	    }
 	}
 	for (ArmorMaterialList armor : ArmorMaterialList.values()) {
 	    for (EquipmentSlotType type : EquipmentSlotType.values()) {
