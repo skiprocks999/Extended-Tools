@@ -36,22 +36,22 @@ public enum ArmorMaterialList implements IArmorMaterial {
 
     @Override
     public int getDurability(EquipmentSlotType slotIn) {
-	return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+	return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * maxDamageFactor;
     }
 
     @Override
     public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-	return this.damageReductionAmountArray[slotIn.getIndex()];
+	return damageReductionAmountArray[slotIn.getIndex()];
     }
 
     @Override
     public int getEnchantability() {
-	return this.enchantability;
+	return enchantability;
     }
 
     @Override
     public SoundEvent getSoundEvent() {
-	return this.soundEvent;
+	return soundEvent;
     }
 
     @Override
@@ -61,16 +61,16 @@ public enum ArmorMaterialList implements IArmorMaterial {
 
     @Override
     public String getName() {
-	return References.ID + ":" + this.name().toLowerCase();
+	return References.ID + ":" + name().toLowerCase();
     }
 
     @Override
     public float getToughness() {
-	return this.toughness;
+	return toughness;
     }
 
     @Override
     public float getKnockbackResistance() {
-	return this.knockbackResistance;
+	return knockbackResistance;
     }
 }
