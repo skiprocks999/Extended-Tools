@@ -27,14 +27,14 @@ import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.common.util.Constants.WorldEvents;
 
 public class PaxelItem extends ToolItem {
-    private static final Set<Material> AXE_EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD,
-	    Material.PLANTS, Material.TALL_PLANTS, Material.BAMBOO, Material.GOURD);
+    private static final Set<Material> AXE_EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANTS,
+	    Material.TALL_PLANTS, Material.BAMBOO, Material.GOURD);
 
     public PaxelItem(IItemTier tier, Properties prop) {
 	super(4, -2.4f, tier, Collections.emptySet(),
 		prop.addToolType(ToolType.AXE, tier.getHarvestLevel()).addToolType(ToolType.HOE, tier.getHarvestLevel())
-			.addToolType(ToolType.PICKAXE, tier.getHarvestLevel())
-			.addToolType(ToolType.SHOVEL, tier.getHarvestLevel()).maxDamage(tier.getMaxUses() * 2));
+			.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()).addToolType(ToolType.SHOVEL, tier.getHarvestLevel())
+			.maxDamage(tier.getMaxUses() * 2));
     }
 
     @Override
@@ -54,8 +54,7 @@ public class PaxelItem extends ToolItem {
     @Override
     public float getDestroySpeed(@Nonnull ItemStack stack, BlockState state) {
 	Material material = state.getMaterial();
-	if (material == Material.IRON || material == Material.ANVIL || material == Material.ROCK
-		|| AXE_EFFECTIVE_ON_MATERIALS.contains(material)
+	if (material == Material.IRON || material == Material.ANVIL || material == Material.ROCK || AXE_EFFECTIVE_ON_MATERIALS.contains(material)
 		|| getToolTypes(stack).stream().anyMatch(state::isToolEffective)) {
 	    return getTier().getEfficiency();
 	}

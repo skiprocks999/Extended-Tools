@@ -5,15 +5,13 @@ import net.minecraft.item.ItemTier;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ExtendedItemTier implements IItemTier {
-    STEEL(2, (int) (ItemTier.IRON.getMaxUses() * 2.7), ItemTier.IRON.getEfficiency(),
-	    ItemTier.IRON.getAttackDamage() * 1.5f, 5),
+    STEEL(2, (int) (ItemTier.IRON.getMaxUses() * 2.7), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage() * 1.5f, 5),
     BRONZE(2, ItemTier.IRON.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
     TIN(1, ItemTier.STONE.getMaxUses(), ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
     COPPER(1, ItemTier.STONE.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.STONE.getAttackDamage(), 5),
     LEAD(2, ItemTier.DIAMOND.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
     VANADIUM(2, ItemTier.STONE.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(),
-	    5);
+    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(), 5);
 
     private final int harvestLevel;
     private final int maxUses;
