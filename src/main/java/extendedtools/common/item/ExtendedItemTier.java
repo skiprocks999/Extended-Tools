@@ -11,7 +11,8 @@ public enum ExtendedItemTier implements IItemTier {
     COPPER(1, ItemTier.STONE.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.STONE.getAttackDamage(), 5),
     LEAD(2, ItemTier.DIAMOND.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
     VANADIUM(2, ItemTier.STONE.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(), 5);
+    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(), 5),
+    TITANIUM(2, ItemTier.IRON.getMaxUses() * 4, ItemTier.IRON.getEfficiency() * 1.1f, ItemTier.IRON.getAttackDamage() * 1.6f, 5);
 
     private final int harvestLevel;
     private final int maxUses;
