@@ -52,7 +52,7 @@ public enum ArmorMaterialList implements IArmorMaterial {
 
     @Override
     public SoundEvent getSoundEvent() {
-	return soundEvent;	
+	return soundEvent;
     }
 
     @Override
