@@ -4,4 +4,9 @@ lead: base diamond (hue, sat, brightness) (51, 27, 10)
 silver: base diamond (hue, sat, brightness) (51, 15, 10)
 steel: base diamond just black&white
 tin: base diamond (sat, brightness) (0, 50)
-vanadium: base diamond (hue, sat, brightness) (84, 29, 10)
+vanadium: base diamond (hue, sat, brightness) (84, 29, 10) then do (-49, 37, -29)
+
+
+
+
+done in paint DOT net
