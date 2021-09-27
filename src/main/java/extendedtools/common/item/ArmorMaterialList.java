@@ -25,7 +25,7 @@ public enum ArmorMaterialList implements IArmorMaterial {
     private final float toughness;
     private final float knockbackResistance;
 
-    private ArmorMaterialList(int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness,
+    ArmorMaterialList(int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness,
 	    float knockbackResistance) {
 	this.maxDamageFactor = maxDamageFactor;
 	this.damageReductionAmountArray = damageReductionAmountArray;
