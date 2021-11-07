@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.common.util.Constants.WorldEvents;
@@ -36,6 +37,7 @@ public class PaxelItem extends DiggerItem {
     }
 
     @Override
+    @Deprecated
     public boolean isCorrectToolForDrops(BlockState state) {
 	ToolType harvestTool = state.getHarvestTool();
 	if ((harvestTool == ToolType.AXE || harvestTool == ToolType.PICKAXE || harvestTool == ToolType.SHOVEL)
@@ -67,14 +69,14 @@ public class PaxelItem extends DiggerItem {
 	Player player = context.getPlayer();
 	ItemStack stack = context.getItemInHand();
 	BlockState state = world.getBlockState(pos);
-	BlockState result = state.getToolModifiedState(world, pos, player, stack, ToolType.AXE);
+	BlockState result = state.getToolModifiedState(world, pos, player, stack, ToolActions.AXE_STRIP);
 	if (result != null) {
 	    world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 	} else {
 	    if (context.getClickedFace() == Direction.DOWN) {
 		return InteractionResult.PASS;
 	    }
-	    BlockState foundResult = state.getToolModifiedState(world, pos, player, stack, ToolType.SHOVEL);
+	    BlockState foundResult = state.getToolModifiedState(world, pos, player, stack, ToolActions.SHOVEL_FLATTEN);
 	    if (foundResult != null && world.isEmptyBlock(pos.above())) {
 		world.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 		result = foundResult;
@@ -82,7 +84,7 @@ public class PaxelItem extends DiggerItem {
 		if (!world.isClientSide) {
 		    world.levelEvent(null, WorldEvents.FIRE_EXTINGUISH_SOUND, pos, 0);
 		}
-		CampfireBlock.dowse(world, pos, state);
+		CampfireBlock.dowse(player, world, pos, state);
 		result = state.setValue(CampfireBlock.LIT, false);
 	    }
 	}
