@@ -7,36 +7,32 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Sets;
 
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.common.util.Constants.WorldEvents;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class PaxelItem extends DiggerItem {
     private static final Set<Material> AXE_EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANT,
 	    Material.REPLACEABLE_PLANT, Material.BAMBOO, Material.VEGETABLE);
 
     public PaxelItem(Tier tier, Properties prop) {
-	super(4, -2.4f, tier, Collections.emptySet(),
-		prop.addToolType(ToolType.AXE, tier.getLevel()).addToolType(ToolType.HOE, tier.getLevel())
-			.addToolType(ToolType.PICKAXE, tier.getLevel()).addToolType(ToolType.SHOVEL, tier.getLevel())
-			.durability(tier.getUses() * 2));
+	super(4, -2.4f, tier, Collections.emptySet(), prop.addToolType(ToolType.AXE, tier.getLevel()).addToolType(ToolType.HOE, tier.getLevel())
+		.addToolType(ToolType.PICKAXE, tier.getLevel()).addToolType(ToolType.SHOVEL, tier.getLevel()).durability(tier.getUses() * 2));
     }
 
     @Override
@@ -56,8 +52,8 @@ public class PaxelItem extends DiggerItem {
     @Override
     public float getDestroySpeed(@Nonnull ItemStack stack, BlockState state) {
 	Material material = state.getMaterial();
-	if (material == Material.METAL || material == Material.HEAVY_METAL || material == Material.STONE || AXE_EFFECTIVE_ON_MATERIALS.contains(material)
-		|| getToolTypes(stack).stream().anyMatch(state::isToolEffective)) {
+	if (material == Material.METAL || material == Material.HEAVY_METAL || material == Material.STONE
+		|| AXE_EFFECTIVE_ON_MATERIALS.contains(material) || getToolTypes(stack).stream().anyMatch(state::isToolEffective)) {
 	    return getTier().getSpeed();
 	}
 	return 1;

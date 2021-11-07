@@ -1,11 +1,11 @@
 package extendedtools.common.item;
 
 import extendedtools.References;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 
 public enum ArmorMaterialList implements ArmorMaterial {
     STEEL((int) (15 * 2.7), new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 1, 0),
