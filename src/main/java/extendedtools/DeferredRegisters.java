@@ -8,16 +8,16 @@ import com.google.common.base.Supplier;
 import extendedtools.common.item.ArmorMaterialList;
 import extendedtools.common.item.ExtendedItemTier;
 import extendedtools.common.item.PaxelItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.Properties;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,22 +35,22 @@ public class DeferredRegisters {
 		Item reg = null;
 		switch (type) {
 		case "axe":
-		    reg = new AxeItem(tier, tier.getAttackDamage(), -3.0f, new Properties().group(References.CORETAB));
+		    reg = new AxeItem(tier, tier.getAttackDamageBonus(), -3.0f, new Properties().tab(References.CORETAB));
 		    break;
 		case "hoe":
-		    reg = new HoeItem(tier, (int) tier.getAttackDamage(), 0f, new Properties().group(References.CORETAB));
+		    reg = new HoeItem(tier, (int) tier.getAttackDamageBonus(), 0f, new Properties().tab(References.CORETAB));
 		    break;
 		case "pickaxe":
-		    reg = new PickaxeItem(tier, (int) tier.getAttackDamage(), -2.8f, new Properties().group(References.CORETAB));
+		    reg = new PickaxeItem(tier, (int) tier.getAttackDamageBonus(), -2.8f, new Properties().tab(References.CORETAB));
 		    break;
 		case "shovel":
-		    reg = new ShovelItem(tier, tier.getAttackDamage(), -3.0f, new Properties().group(References.CORETAB));
+		    reg = new ShovelItem(tier, tier.getAttackDamageBonus(), -3.0f, new Properties().tab(References.CORETAB));
 		    break;
 		case "sword":
-		    reg = new SwordItem(tier, (int) tier.getAttackDamage(), -2.4f, new Properties().group(References.CORETAB));
+		    reg = new SwordItem(tier, (int) tier.getAttackDamageBonus(), -2.4f, new Properties().tab(References.CORETAB));
 		    break;
 		case "paxel":
-		    reg = new PaxelItem(tier, new Properties().group(References.CORETAB));
+		    reg = new PaxelItem(tier, new Properties().tab(References.CORETAB));
 		    break;
 		default:
 		    break;
@@ -58,18 +58,18 @@ public class DeferredRegisters {
 		ITEMS.register(type + tier.tag(), supplier(reg));
 	    }
 	}
-	for (ItemTier tier : ItemTier.values()) {
-	    PaxelItem item = new PaxelItem(tier, new Properties().group(References.CORETAB));
+	for (Tiers tier : Tiers.values()) {
+	    PaxelItem item = new PaxelItem(tier, new Properties().tab(References.CORETAB));
 	    ITEMS.register("paxel" + tier.name().toLowerCase(), supplier(item));
-	    if (tier == ItemTier.NETHERITE) {
+	    if (tier == Tiers.NETHERITE) {
 		icon = item;
 	    }
 	}
 	for (ArmorMaterialList armor : ArmorMaterialList.values()) {
-	    for (EquipmentSlotType type : EquipmentSlotType.values()) {
-		if (type != EquipmentSlotType.MAINHAND && type != EquipmentSlotType.OFFHAND) {
+	    for (EquipmentSlot type : EquipmentSlot.values()) {
+		if (type != EquipmentSlot.MAINHAND && type != EquipmentSlot.OFFHAND) {
 		    ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""),
-			    supplier(new ArmorItem(armor, type, new Properties().group(References.CORETAB))));
+			    supplier(new ArmorItem(armor, type, new Properties().tab(References.CORETAB))));
 		}
 	    }
 	}

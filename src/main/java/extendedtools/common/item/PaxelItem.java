@@ -7,96 +7,98 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Sets;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ToolItem;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.Constants.BlockFlags;
 import net.minecraftforge.common.util.Constants.WorldEvents;
 
-public class PaxelItem extends ToolItem {
-    private static final Set<Material> AXE_EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANTS,
-	    Material.TALL_PLANTS, Material.BAMBOO, Material.GOURD);
+import net.minecraft.world.item.Item.Properties;
 
-    public PaxelItem(IItemTier tier, Properties prop) {
+public class PaxelItem extends DiggerItem {
+    private static final Set<Material> AXE_EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANT,
+	    Material.REPLACEABLE_PLANT, Material.BAMBOO, Material.VEGETABLE);
+
+    public PaxelItem(Tier tier, Properties prop) {
 	super(4, -2.4f, tier, Collections.emptySet(),
-		prop.addToolType(ToolType.AXE, tier.getHarvestLevel()).addToolType(ToolType.HOE, tier.getHarvestLevel())
-			.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()).addToolType(ToolType.SHOVEL, tier.getHarvestLevel())
-			.maxDamage(tier.getMaxUses() * 2));
+		prop.addToolType(ToolType.AXE, tier.getLevel()).addToolType(ToolType.HOE, tier.getLevel())
+			.addToolType(ToolType.PICKAXE, tier.getLevel()).addToolType(ToolType.SHOVEL, tier.getLevel())
+			.durability(tier.getUses() * 2));
     }
 
     @Override
-    public boolean canHarvestBlock(BlockState state) {
+    public boolean isCorrectToolForDrops(BlockState state) {
 	ToolType harvestTool = state.getHarvestTool();
 	if ((harvestTool == ToolType.AXE || harvestTool == ToolType.PICKAXE || harvestTool == ToolType.SHOVEL)
-		&& getTier().getHarvestLevel() >= state.getHarvestLevel()) {
+		&& getTier().getLevel() >= state.getHarvestLevel()) {
 	    return true;
 	}
-	if (state.isIn(Blocks.SNOW) || state.isIn(Blocks.SNOW_BLOCK)) {
+	if (state.is(Blocks.SNOW) || state.is(Blocks.SNOW_BLOCK)) {
 	    return true;
 	}
 	Material material = state.getMaterial();
-	return material == Material.ROCK || material == Material.IRON || material == Material.ANVIL;
+	return material == Material.STONE || material == Material.METAL || material == Material.HEAVY_METAL;
     }
 
     @Override
     public float getDestroySpeed(@Nonnull ItemStack stack, BlockState state) {
 	Material material = state.getMaterial();
-	if (material == Material.IRON || material == Material.ANVIL || material == Material.ROCK || AXE_EFFECTIVE_ON_MATERIALS.contains(material)
+	if (material == Material.METAL || material == Material.HEAVY_METAL || material == Material.STONE || AXE_EFFECTIVE_ON_MATERIALS.contains(material)
 		|| getToolTypes(stack).stream().anyMatch(state::isToolEffective)) {
-	    return getTier().getEfficiency();
+	    return getTier().getSpeed();
 	}
 	return 1;
     }
 
     @Nonnull
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-	World world = context.getWorld();
-	BlockPos pos = context.getPos();
-	PlayerEntity player = context.getPlayer();
-	ItemStack stack = context.getItem();
+    public InteractionResult useOn(UseOnContext context) {
+	Level world = context.getLevel();
+	BlockPos pos = context.getClickedPos();
+	Player player = context.getPlayer();
+	ItemStack stack = context.getItemInHand();
 	BlockState state = world.getBlockState(pos);
 	BlockState result = state.getToolModifiedState(world, pos, player, stack, ToolType.AXE);
 	if (result != null) {
-	    world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	    world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 	} else {
-	    if (context.getFace() == Direction.DOWN) {
-		return ActionResultType.PASS;
+	    if (context.getClickedFace() == Direction.DOWN) {
+		return InteractionResult.PASS;
 	    }
 	    BlockState foundResult = state.getToolModifiedState(world, pos, player, stack, ToolType.SHOVEL);
-	    if (foundResult != null && world.isAirBlock(pos.up())) {
-		world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	    if (foundResult != null && world.isEmptyBlock(pos.above())) {
+		world.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 		result = foundResult;
-	    } else if (state.getBlock() instanceof CampfireBlock && state.get(CampfireBlock.LIT) == Boolean.TRUE) {
-		if (!world.isRemote) {
-		    world.playEvent(null, WorldEvents.FIRE_EXTINGUISH_SOUND, pos, 0);
+	    } else if (state.getBlock() instanceof CampfireBlock && state.getValue(CampfireBlock.LIT) == Boolean.TRUE) {
+		if (!world.isClientSide) {
+		    world.levelEvent(null, WorldEvents.FIRE_EXTINGUISH_SOUND, pos, 0);
 		}
-		CampfireBlock.extinguish(world, pos, state);
-		result = state.with(CampfireBlock.LIT, false);
+		CampfireBlock.dowse(world, pos, state);
+		result = state.setValue(CampfireBlock.LIT, false);
 	    }
 	}
 	if (result == null) {
-	    return ActionResultType.PASS;
+	    return InteractionResult.PASS;
 	}
-	if (!world.isRemote) {
-	    world.setBlockState(pos, result, BlockFlags.DEFAULT_AND_RERENDER);
+	if (!world.isClientSide) {
+	    world.setBlock(pos, result, BlockFlags.DEFAULT_AND_RERENDER);
 	    if (player != null) {
-		stack.damageItem(1, player, onBroken -> onBroken.sendBreakAnimation(context.getHand()));
+		stack.hurtAndBreak(1, player, onBroken -> onBroken.broadcastBreakEvent(context.getHand()));
 	    }
 	}
-	return ActionResultType.func_233537_a_(world.isRemote);
+	return InteractionResult.sidedSuccess(world.isClientSide);
     }
 }

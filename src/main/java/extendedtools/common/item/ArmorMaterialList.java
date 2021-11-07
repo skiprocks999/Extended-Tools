@@ -1,21 +1,21 @@
 package extendedtools.common.item;
 
 import extendedtools.References;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 
-public enum ArmorMaterialList implements IArmorMaterial {
-    STEEL((int) (15 * 2.7), new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1, 0),
-    BRONZE(15, new int[] { 2, 5, 6, 2 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0),
-    TIN(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0),
-    COPPER(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0),
-    LEAD(30, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 3),
-    VANADIUM(15, new int[] { 3, 4, 5, 3 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0),
-    SILVER(20, new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0),
-    TITANIUM(60, new int[] { 4, 6, 8, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2, 0);
+public enum ArmorMaterialList implements ArmorMaterial {
+    STEEL((int) (15 * 2.7), new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 1, 0),
+    BRONZE(15, new int[] { 2, 5, 6, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+    TIN(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+    COPPER(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+    LEAD(30, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 3),
+    VANADIUM(15, new int[] { 3, 4, 5, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+    SILVER(20, new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+    TITANIUM(60, new int[] { 4, 6, 8, 4 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 2, 0);
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
     private final int maxDamageFactor;
@@ -36,27 +36,27 @@ public enum ArmorMaterialList implements IArmorMaterial {
     }
 
     @Override
-    public int getDurability(EquipmentSlotType slotIn) {
+    public int getDurabilityForSlot(EquipmentSlot slotIn) {
 	return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * maxDamageFactor;
     }
 
     @Override
-    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+    public int getDefenseForSlot(EquipmentSlot slotIn) {
 	return damageReductionAmountArray[slotIn.getIndex()];
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
 	return enchantability;
     }
 
     @Override
-    public SoundEvent getSoundEvent() {
+    public SoundEvent getEquipSound() {
 	return soundEvent;
     }
 
     @Override
-    public Ingredient getRepairMaterial() {
+    public Ingredient getRepairIngredient() {
 	return Ingredient.EMPTY;
     }
 

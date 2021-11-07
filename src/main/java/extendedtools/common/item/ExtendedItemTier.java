@@ -1,18 +1,18 @@
 package extendedtools.common.item;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public enum ExtendedItemTier implements IItemTier {
-    STEEL(2, (int) (ItemTier.IRON.getMaxUses() * 2.7), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage() * 1.5f, 5),
-    BRONZE(2, ItemTier.IRON.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    TIN(1, ItemTier.STONE.getMaxUses(), ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    COPPER(1, ItemTier.STONE.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.STONE.getAttackDamage(), 5),
-    LEAD(2, ItemTier.DIAMOND.getMaxUses() * 2, ItemTier.STONE.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    VANADIUM(2, ItemTier.STONE.getMaxUses(), ItemTier.IRON.getEfficiency(), ItemTier.IRON.getAttackDamage(), 5),
-    SILVER(2, (int) (ItemTier.IRON.getMaxUses() * 1.3), ItemTier.GOLD.getEfficiency(), ItemTier.GOLD.getAttackDamage(), 5),
-    TITANIUM(2, ItemTier.IRON.getMaxUses() * 4, ItemTier.IRON.getEfficiency() * 1.1f, ItemTier.IRON.getAttackDamage() * 1.6f, 5);
+public enum ExtendedItemTier implements Tier {
+    STEEL(2, (int) (Tiers.IRON.getUses() * 2.7), Tiers.IRON.getSpeed(), Tiers.IRON.getAttackDamageBonus() * 1.5f, 5),
+    BRONZE(2, Tiers.IRON.getUses(), Tiers.IRON.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
+    TIN(1, Tiers.STONE.getUses(), Tiers.STONE.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
+    COPPER(1, Tiers.STONE.getUses() * 2, Tiers.STONE.getSpeed(), Tiers.STONE.getAttackDamageBonus(), 5),
+    LEAD(2, Tiers.DIAMOND.getUses() * 2, Tiers.STONE.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
+    VANADIUM(2, Tiers.STONE.getUses(), Tiers.IRON.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
+    SILVER(2, (int) (Tiers.IRON.getUses() * 1.3), Tiers.GOLD.getSpeed(), Tiers.GOLD.getAttackDamageBonus(), 5),
+    TITANIUM(2, Tiers.IRON.getUses() * 4, Tiers.IRON.getSpeed() * 1.1f, Tiers.IRON.getAttackDamageBonus() * 1.6f, 5);
 
     private final int harvestLevel;
     private final int maxUses;
@@ -29,32 +29,32 @@ public enum ExtendedItemTier implements IItemTier {
     }
 
     @Override
-    public int getMaxUses() {
+    public int getUses() {
 	return maxUses;
     }
 
     @Override
-    public float getEfficiency() {
+    public float getSpeed() {
 	return efficency;
     }
 
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
 	return attackDammage;
     }
 
     @Override
-    public int getHarvestLevel() {
+    public int getLevel() {
 	return harvestLevel;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
 	return enchantability;
     }
 
     @Override
-    public Ingredient getRepairMaterial() {
+    public Ingredient getRepairIngredient() {
 	return Ingredient.EMPTY;
     }
 
