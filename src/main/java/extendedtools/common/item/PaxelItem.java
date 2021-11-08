@@ -26,7 +26,8 @@ public class PaxelItem extends DiggerItem {
 	super(4, -2.4f, tier, BlockTags.MINEABLE_WITH_AXE, prop.durability(tier.getUses() * 2));
     }
 
-    @Deprecated(forRemoval = true) // FORGE: Use stack sensitive variant below
+    @Deprecated(forRemoval = true)
+    // FORGE: Use stack sensitive variant below
     // ONLY ADDED CAUSE IT EXISTS IN THE DiggerItem.class!!!
     @Override
     public boolean isCorrectToolForDrops(BlockState state) {
