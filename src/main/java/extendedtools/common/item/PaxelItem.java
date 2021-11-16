@@ -37,14 +37,11 @@ public class PaxelItem extends DiggerItem {
 			    || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
 	}
 	int i = getTier().getLevel();
-	if (i < 3 && state.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
+	if (i < 3 && state.is(BlockTags.NEEDS_DIAMOND_TOOL) || i < 2 && state.is(BlockTags.NEEDS_IRON_TOOL)) {
 	    return false;
-	} else if (i < 2 && state.is(BlockTags.NEEDS_IRON_TOOL)) {
-	    return false;
-	} else {
-	    return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE)
-		    || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
 	}
+	return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE)
+		|| state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
     }
 
     // FORGE START
