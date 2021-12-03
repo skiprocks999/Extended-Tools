@@ -79,7 +79,7 @@ public class PaxelItem extends DiggerItem {
 		result = foundResult;
 	    } else if (state.getBlock() instanceof CampfireBlock && state.getValue(CampfireBlock.LIT) == Boolean.TRUE) {
 		if (!world.isClientSide) {
-		    world.levelEvent(null, 1009 /*WorldEvents.FIRE_EXTINGUISH_SOUND*/, pos, 0);
+		    world.levelEvent(null, 1009 /* WorldEvents.FIRE_EXTINGUISH_SOUND */, pos, 0);
 		}
 		CampfireBlock.dowse(player, world, pos, state);
 		result = state.setValue(CampfireBlock.LIT, false);
