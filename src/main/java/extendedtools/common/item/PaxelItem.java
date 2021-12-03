@@ -14,11 +14,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.common.util.Constants.BlockFlags;
-import net.minecraftforge.common.util.Constants.WorldEvents;
 
 public class PaxelItem extends DiggerItem {
 
@@ -80,7 +79,7 @@ public class PaxelItem extends DiggerItem {
 		result = foundResult;
 	    } else if (state.getBlock() instanceof CampfireBlock && state.getValue(CampfireBlock.LIT) == Boolean.TRUE) {
 		if (!world.isClientSide) {
-		    world.levelEvent(null, WorldEvents.FIRE_EXTINGUISH_SOUND, pos, 0);
+		    world.levelEvent(null, 1009 /*WorldEvents.FIRE_EXTINGUISH_SOUND*/, pos, 0);
 		}
 		CampfireBlock.dowse(player, world, pos, state);
 		result = state.setValue(CampfireBlock.LIT, false);
@@ -90,7 +89,7 @@ public class PaxelItem extends DiggerItem {
 	    return InteractionResult.PASS;
 	}
 	if (!world.isClientSide) {
-	    world.setBlock(pos, result, BlockFlags.DEFAULT_AND_RERENDER);
+	    world.setBlock(pos, result, Block.UPDATE_ALL);
 	    if (player != null) {
 		stack.hurtAndBreak(1, player, onBroken -> onBroken.broadcastBreakEvent(context.getHand()));
 	    }
