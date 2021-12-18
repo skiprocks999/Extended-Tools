@@ -15,17 +15,17 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
 public class ExtendedTools {
 
-    public ExtendedTools() {
-	IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-	DeferredRegisters.ITEMS.register(bus);
-    }
+	public ExtendedTools() {
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		DeferredRegisters.ITEMS.register(bus);
+	}
 
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public static void onClientSetup(FMLClientSetupEvent event) {
-    }
+	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
+	public static void onClientSetup(FMLClientSetupEvent event) {
+	}
 
-    @SubscribeEvent
-    public static void onLoadEvent(FMLLoadCompleteEvent event) {
-    }
+	@SubscribeEvent
+	public static void onLoadEvent(FMLLoadCompleteEvent event) {
+	}
 }
