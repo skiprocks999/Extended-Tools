@@ -35,16 +35,16 @@ public class DeferredRegisters {
 				Item reg = null;
 				switch (type) {
 				case "axe":
-					reg = new AxeItem(tier, tier.getAttackDamageBonus(), -3.0f, new Properties().tab(References.CORETAB));
+					reg = new AxeItem(tier, tier.getAttackDamageBonus() * 1.15f, -3.0f, new Properties().tab(References.CORETAB));
 					break;
 				case "hoe":
-					reg = new HoeItem(tier, (int) tier.getAttackDamageBonus(), 0f, new Properties().tab(References.CORETAB));
+					reg = new HoeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.27f), -1.4f, new Properties().tab(References.CORETAB));
 					break;
 				case "pickaxe":
-					reg = new PickaxeItem(tier, (int) tier.getAttackDamageBonus(), -2.8f, new Properties().tab(References.CORETAB));
+					reg = new PickaxeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.33f), -2.8f, new Properties().tab(References.CORETAB));
 					break;
 				case "shovel":
-					reg = new ShovelItem(tier, tier.getAttackDamageBonus(), -3.0f, new Properties().tab(References.CORETAB));
+					reg = new ShovelItem(tier, tier.getAttackDamageBonus() * 0.33f, -3.0f, new Properties().tab(References.CORETAB));
 					break;
 				case "sword":
 					reg = new SwordItem(tier, (int) tier.getAttackDamageBonus(), -2.4f, new Properties().tab(References.CORETAB));
