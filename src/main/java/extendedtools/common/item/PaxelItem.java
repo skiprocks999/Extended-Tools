@@ -31,23 +31,19 @@ public class PaxelItem extends DiggerItem {
 	@Override
 	public boolean isCorrectToolForDrops(BlockState state) {
 		if (net.minecraftforge.common.TierSortingRegistry.isTierSorted(getTier())) {
-			return net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(getTier(), state)
-					&& (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE)
-							|| state.is(BlockTags.MINEABLE_WITH_SHOVEL));
+			return net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(getTier(), state) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
 		}
 		int i = getTier().getLevel();
 		if (i < 3 && state.is(BlockTags.NEEDS_DIAMOND_TOOL) || i < 2 && state.is(BlockTags.NEEDS_IRON_TOOL)) {
 			return false;
 		}
-		return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE)
-				|| state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
+		return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
 	}
 
 	// FORGE START
 	@Override
 	public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-		return (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE)
-				|| state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(getTier(), state);
+		return (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(getTier(), state);
 	}
 
 	@Override

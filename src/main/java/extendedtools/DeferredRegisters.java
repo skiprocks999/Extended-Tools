@@ -68,8 +68,7 @@ public class DeferredRegisters {
 		for (ArmorMaterialList armor : ArmorMaterialList.values()) {
 			for (EquipmentSlot type : EquipmentSlot.values()) {
 				if (type != EquipmentSlot.MAINHAND && type != EquipmentSlot.OFFHAND) {
-					ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""),
-							supplier(new ArmorItem(armor, type, new Properties().tab(References.CORETAB))));
+					ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""), supplier(new ArmorItem(armor, type, new Properties().tab(References.CORETAB))));
 				}
 			}
 		}
