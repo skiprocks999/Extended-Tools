@@ -8,7 +8,14 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public enum ArmorMaterialList implements ArmorMaterial {
-	STEEL((int) (15 * 2.7), new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 1, 0), BRONZE(15, new int[] { 2, 5, 6, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0), TIN(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0), COPPER(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0), LEAD(30, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 3), VANADIUM(15, new int[] { 3, 4, 5, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0), SILVER(20, new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0), TITANIUM(60, new int[] { 4, 6, 8, 4 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 2, 0);
+	STEEL((int) (15 * 2.7), new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 1, 0),
+	BRONZE(15, new int[] { 2, 5, 6, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+	TIN(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+	COPPER(12, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+	LEAD(30, new int[] { 2, 4, 5, 2 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 3),
+	VANADIUM(15, new int[] { 3, 4, 5, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+	SILVER(20, new int[] { 3, 5, 7, 3 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 0, 0),
+	TITANIUM(60, new int[] { 4, 6, 8, 4 }, 10, SoundEvents.ARMOR_EQUIP_IRON, 2, 0);
 
 	private static final int[] MAX_DAMAGE_ARRAY = new int[] { 13, 15, 16, 11 };
 	private final int maxDamageFactor;
