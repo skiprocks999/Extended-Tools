@@ -11,7 +11,7 @@ public enum ExtendedItemTier implements Tier {
 	COPPER(1, Tiers.STONE.getUses() * 2, Tiers.STONE.getSpeed(), Tiers.STONE.getAttackDamageBonus(), 5),
 	LEAD(2, Tiers.DIAMOND.getUses() * 2, Tiers.STONE.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
 	VANADIUM(2, Tiers.STONE.getUses(), Tiers.IRON.getSpeed(), Tiers.IRON.getAttackDamageBonus(), 5),
-	SILVER(2, (int) (Tiers.IRON.getUses() * 1.3), Tiers.GOLD.getSpeed(), Tiers.GOLD.getAttackDamageBonus(), 5),
+	SILVER(2, (int) (Tiers.IRON.getUses() * 1.3), Tiers.GOLD.getSpeed(), 6 + Tiers.GOLD.getAttackDamageBonus(), 5),
 	TITANIUM(2, Tiers.IRON.getUses() * 4, Tiers.IRON.getSpeed() * 1.1f, Tiers.IRON.getAttackDamageBonus() * 1.3f, 5);
 
 	private final int harvestLevel;
