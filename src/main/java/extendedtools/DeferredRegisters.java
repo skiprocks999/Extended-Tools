@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
 public class DeferredRegisters {
@@ -58,10 +59,9 @@ public class DeferredRegisters {
 			}
 		}
 		for (Tiers tier : Tiers.values()) {
-			Supplier<PaxelItem> supplier = () -> new PaxelItem(tier, new Properties().tab(References.CORETAB));
-			ITEMS.register("paxel" + tier.name().toLowerCase(), supplier);
+			RegistryObject<PaxelItem> obj = ITEMS.register("paxel" + tier.name().toLowerCase(), () -> new PaxelItem(tier, new Properties().tab(References.CORETAB)));
 			if (tier == Tiers.NETHERITE) {
-				icon = supplier;
+				icon = () -> obj.get();
 			}
 		}
 		for (ArmorMaterialList armor : ArmorMaterialList.values()) {
