@@ -22,59 +22,54 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
 public class DeferredRegisters {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, References.ID);
-	public static PaxelItem icon;
+	public static Supplier<PaxelItem> icon;
 	static {
 		List<String> types = Arrays.<String>asList("axe", "hoe", "pickaxe", "shovel", "sword", "paxel");
 		for (String type : types) {
 			for (ExtendedItemTier tier : ExtendedItemTier.values()) {
-				Item reg = null;
+				Supplier<Item> reg = null;
 				switch (type) {
 				case "axe":
-					reg = new AxeItem(tier, tier.getAttackDamageBonus() * 1.15f, -3.0f, new Properties().tab(References.CORETAB));
+					reg = () -> new AxeItem(tier, tier.getAttackDamageBonus() * 1.15f, -3.0f, new Properties().tab(References.CORETAB));
 					break;
 				case "hoe":
-					reg = new HoeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.27f), -1.4f, new Properties().tab(References.CORETAB));
+					reg = () -> new HoeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.27f), -1.4f, new Properties().tab(References.CORETAB));
 					break;
 				case "pickaxe":
-					reg = new PickaxeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.33f), -2.8f, new Properties().tab(References.CORETAB));
+					reg = () -> new PickaxeItem(tier, (int) ((int) tier.getAttackDamageBonus() * 0.33f), -2.8f, new Properties().tab(References.CORETAB));
 					break;
 				case "shovel":
-					reg = new ShovelItem(tier, tier.getAttackDamageBonus() * 0.33f, -3.0f, new Properties().tab(References.CORETAB));
+					reg = () -> new ShovelItem(tier, tier.getAttackDamageBonus() * 0.33f, -3.0f, new Properties().tab(References.CORETAB));
 					break;
 				case "sword":
-					reg = new SwordItem(tier, (int) tier.getAttackDamageBonus(), -2.4f, new Properties().tab(References.CORETAB));
+					reg = () -> new SwordItem(tier, (int) tier.getAttackDamageBonus(), -2.4f, new Properties().tab(References.CORETAB));
 					break;
 				case "paxel":
-					reg = new PaxelItem(tier, new Properties().tab(References.CORETAB));
+					reg = () -> new PaxelItem(tier, new Properties().tab(References.CORETAB));
 					break;
 				default:
 					break;
 				}
-				ITEMS.register(type + tier.tag(), supplier(reg));
+				ITEMS.register(type + tier.tag(), reg);
 			}
 		}
 		for (Tiers tier : Tiers.values()) {
-			PaxelItem item = new PaxelItem(tier, new Properties().tab(References.CORETAB));
-			ITEMS.register("paxel" + tier.name().toLowerCase(), supplier(item));
+			Supplier<PaxelItem> supplier = () -> new PaxelItem(tier, new Properties().tab(References.CORETAB));
+			ITEMS.register("paxel" + tier.name().toLowerCase(), supplier);
 			if (tier == Tiers.NETHERITE) {
-				icon = item;
+				icon = supplier;
 			}
 		}
 		for (ArmorMaterialList armor : ArmorMaterialList.values()) {
 			for (EquipmentSlot type : EquipmentSlot.values()) {
 				if (type != EquipmentSlot.MAINHAND && type != EquipmentSlot.OFFHAND) {
-					ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""), supplier(new ArmorItem(armor, type, new Properties().tab(References.CORETAB))));
+					ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""), () -> new ArmorItem(armor, type, new Properties().tab(References.CORETAB)));
 				}
 			}
 		}
-	}
-
-	private static <T extends IForgeRegistryEntry<T>> Supplier<? extends T> supplier(T entry) {
-		return () -> entry;
 	}
 }

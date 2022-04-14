@@ -12,6 +12,6 @@ public class ItemGroupExtendedTools extends CreativeModeTab {
 
 	@Override
 	public ItemStack makeIcon() {
-		return new ItemStack(DeferredRegisters.icon);
+		return new ItemStack(DeferredRegisters.icon.get());
 	}
 }
