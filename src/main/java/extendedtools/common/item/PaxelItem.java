@@ -39,6 +39,11 @@ public class PaxelItem extends DiggerItem {
 		}
 		return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
 	}
+	
+	@Override
+	public boolean isFireResistant() {
+		return getTier() == Tiers.NETHERITE; //Netherite tier
+	}
 
 	// FORGE START
 	@Override
