@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -38,6 +39,11 @@ public class PaxelItem extends DiggerItem {
 			return false;
 		}
 		return i >= 1 && state.is(BlockTags.NEEDS_STONE_TOOL) && (state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_HOE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL));
+	}
+	
+	@Override
+	public boolean isFireResistant() {
+		return getTier() == Tiers.NETHERITE; //Netherite tier
 	}
 
 	// FORGE START
