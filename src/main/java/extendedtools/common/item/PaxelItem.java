@@ -68,14 +68,14 @@ public class PaxelItem extends DiggerItem {
 		Player player = context.getPlayer();
 		ItemStack stack = context.getItemInHand();
 		BlockState state = world.getBlockState(pos);
-		BlockState result = state.getToolModifiedState(world, pos, player, stack, ToolActions.AXE_STRIP);
+		BlockState result = state.getToolModifiedState(context, ToolActions.AXE_STRIP, false);
 		if (result != null) {
 			world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 		} else {
 			if (context.getClickedFace() == Direction.DOWN) {
 				return InteractionResult.PASS;
 			}
-			BlockState foundResult = state.getToolModifiedState(world, pos, player, stack, ToolActions.SHOVEL_FLATTEN);
+			BlockState foundResult = state.getToolModifiedState(context, ToolActions.SHOVEL_FLATTEN, false);
 			if (foundResult != null && world.isEmptyBlock(pos.above())) {
 				world.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 				result = foundResult;
