@@ -1,16 +1,19 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        maven { url = 'https://maven.parchmentmc.org' }
+        maven { url = "https://modmaven.dev" }
+   		maven { url = "https://dvs1.progwml6.com/files/maven/" }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.ajoberstar:gradle-git:0.6.1'
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
-import org.ajoberstar.gradle.git.tasks.GitTag
-import org.ajoberstar.gradle.git.tasks.GitPush
 
 plugins {
     id "com.matthewprenger.cursegradle" version '1.4.0'
@@ -19,15 +22,17 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+
 apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 libsDirName = "../output"
 distsDirName = "../output"
 
-def version_minor='3'
-def version_revision='6'
-def minecraft_version='1.18.2'
-def version_build='1'
+def version_minor='4'
+def version_revision='0'
+def minecraft_version='1.19.2'
+def version_build='0'
 def version_major='0'
 
 version = minecraft_version+'-'+version_major+'.'+version_minor+'.'+version_revision+'-'+version_build
@@ -38,7 +43,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.2' 
+    mappings channel: 'parchment', version: '2022.11.06-1.19.2'
     
     runs {
         client {
@@ -92,7 +97,7 @@ minecraft {
 }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.18.2-40.0.45'
+	minecraft 'net.minecraftforge:forge:1.19.2-43.1.52'
 
 }
 
@@ -139,19 +144,9 @@ publishing {
     }
 }
 
-ext.gittagnew = 'v'+project.version
 
-task createTag(type: GitTag) {
-   repoPath = rootDir
-   tagName = gittagnew
-   message = "tag ${project.version.toString()}"
-}
-
-task pushTag(type: GitPush, dependsOn: createTag) {
-   namesOrSpecs = [gittagnew]
-}
 tasks.curseforge.dependsOn jar
-tasks.curseforge.dependsOn pushTag
+
 
 curseforge {
   apiKey = System.getenv("CURSEFORGE_KEY")
