@@ -18,6 +18,7 @@ public class ExtendedTools {
 	public ExtendedTools() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		DeferredRegisters.ITEMS.register(bus);
+		DeferredRegisters.CREATIVE_TABS.register(bus);
 	}
 
 	@SubscribeEvent
