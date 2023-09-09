@@ -10,14 +10,15 @@ import com.google.common.base.Supplier;
 import extendedtools.common.item.ArmorMaterialList;
 import extendedtools.common.item.ExtendedItemTier;
 import extendedtools.common.item.PaxelItem;
-import extendedtools.common.tab.ItemGroupExtendedTools;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
@@ -61,14 +62,13 @@ public class DeferredRegisters {
 				default:
 					break;
 				}
-				items.add(reg);
-				ITEMS.register(type + tier.tag(), reg);
+				RegistryObject<Item> obj = ITEMS.register(type + tier.tag(), reg);
+				items.add(() -> obj.get());
 			}
 		}
 		for (Tiers tier : Tiers.values()) {
-			Supplier<PaxelItem> reg = () -> new PaxelItem(tier, new Properties());
-			items.add(() -> reg.get());
-			RegistryObject<PaxelItem> obj = ITEMS.register("paxel" + tier.name().toLowerCase(), reg);
+			RegistryObject<PaxelItem> obj = ITEMS.register("paxel" + tier.name().toLowerCase(), () -> new PaxelItem(tier, new Properties()));
+			items.add(() -> obj.get());
 			if (tier == Tiers.NETHERITE) {
 				icon = () -> obj.get();
 			}
@@ -80,11 +80,10 @@ public class DeferredRegisters {
 		mappings.put("boots", "feet");
 		for (ArmorMaterialList armor : ArmorMaterialList.values()) {
 			for (ArmorItem.Type type : ArmorItem.Type.values()) {
-				Supplier<ArmorItem> reg = () -> new ArmorItem(armor, type, new Properties());
-				items.add(() -> reg.get());
-				ITEMS.register(mappings.get(type.getName()) + armor.getName().replace(References.ID + ":", ""), reg);
+				RegistryObject<ArmorItem> obj = ITEMS.register(mappings.get(type.getName()) + armor.getName().replace(References.ID + ":", ""), () -> new ArmorItem(armor, type, new Properties()));
+				items.add(() -> obj.get());
 			}
 		}
-		CREATIVE_TABS.register("itemgroupextendedtools", () -> new ItemGroupExtendedTools("itemgroupextendedtools"));
+		CREATIVE_TABS.register("itemgroupextendedtools", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.itemgroupextendedtools")).icon(() -> new ItemStack(DeferredRegisters.icon.get())).build());
 	}
 }
