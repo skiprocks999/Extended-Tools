@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "extendedtools:items/legssteel"
+		"layer0": "extendedtools:item/legssteel"
 	}
 }

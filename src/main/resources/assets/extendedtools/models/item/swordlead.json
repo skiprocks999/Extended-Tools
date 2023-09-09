@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "extendedtools:items/swordlead"   
+        "layer0": "extendedtools:item/swordlead"   
     }
 }

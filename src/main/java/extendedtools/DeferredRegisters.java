@@ -1,6 +1,7 @@
 package extendedtools;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -9,8 +10,11 @@ import com.google.common.base.Supplier;
 import extendedtools.common.item.ArmorMaterialList;
 import extendedtools.common.item.ExtendedItemTier;
 import extendedtools.common.item.PaxelItem;
+import extendedtools.common.tab.ItemGroupExtendedTools;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
@@ -26,8 +30,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
 public class DeferredRegisters {
+	public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, References.ID);
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, References.ID);
-	public static final HashSet<Supplier<Item>> items = new HashSet();
+	public static final HashSet<Supplier<Item>> items = new HashSet<>();
 	public static Supplier<PaxelItem> icon;
 	static {
 		List<String> types = Arrays.<String>asList("axe", "hoe", "pickaxe", "shovel", "sword", "paxel");
@@ -68,12 +73,18 @@ public class DeferredRegisters {
 				icon = () -> obj.get();
 			}
 		}
+		HashMap<String, String> mappings = new HashMap<>();
+		mappings.put("helmet", "head");
+		mappings.put("chestplate", "chest");
+		mappings.put("leggings", "legs");
+		mappings.put("boots", "feet");
 		for (ArmorMaterialList armor : ArmorMaterialList.values()) {
 			for (ArmorItem.Type type : ArmorItem.Type.values()) {
 				Supplier<ArmorItem> reg = () -> new ArmorItem(armor, type, new Properties());
 				items.add(() -> reg.get());
-				ITEMS.register(type.getName() + armor.getName().replace(References.ID + ":", ""), reg);
+				ITEMS.register(mappings.get(type.getName()) + armor.getName().replace(References.ID + ":", ""), reg);
 			}
 		}
+		CREATIVE_TABS.register("itemgroupextendedtools", () -> new ItemGroupExtendedTools("itemgroupextendedtools"));
 	}
 }

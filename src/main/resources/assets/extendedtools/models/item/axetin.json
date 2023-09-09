@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "extendedtools:items/axetin"   
+        "layer0": "extendedtools:item/axetin"   
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "extendedtools:items/pickaxesteel"   
+        "layer0": "extendedtools:item/pickaxesteel"   
     }
 }
