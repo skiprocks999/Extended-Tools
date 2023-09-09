@@ -2,6 +2,7 @@ package extendedtools;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,5 +29,16 @@ public class ExtendedTools {
 
 	@SubscribeEvent
 	public static void onLoadEvent(FMLLoadCompleteEvent event) {
+	}
+
+	@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = References.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+	private static class ElectroCreativeRegistry {
+
+		@SubscribeEvent
+		public static void registerItems(BuildCreativeModeTabContentsEvent event) {
+			DeferredRegisters.ITEMS.getEntries().forEach(reg -> {
+				event.accept(reg.get());
+			});
+		}
 	}
 }
