@@ -1,5 +1,6 @@
 package extendedtools;
 
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod(References.ID)
 @EventBusSubscriber(modid = References.ID, bus = Bus.MOD)
@@ -36,9 +38,12 @@ public class ExtendedTools {
 
 		@SubscribeEvent
 		public static void registerItems(BuildCreativeModeTabContentsEvent event) {
-			DeferredRegisters.ITEMS.getEntries().forEach(reg -> {
-				event.accept(reg.get());
-			});
+			CreativeModeTab tab = ((RegistryObject<CreativeModeTab>) DeferredRegisters.CREATIVE_TABS.getEntries().toArray()[0]).get();
+			if (event.getTab() == tab) {
+				DeferredRegisters.ITEMS.getEntries().forEach(reg -> {
+					event.accept(reg.get());
+				});
+			}
 		}
 	}
 }
