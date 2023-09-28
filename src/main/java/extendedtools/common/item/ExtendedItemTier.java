@@ -1,9 +1,10 @@
 package extendedtools.common.item;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
-import org.jetbrains.annotations.NotNull;
 
 public enum ExtendedItemTier implements Tier {
 	STEEL(2, (int) (Tiers.IRON.getUses() * 2.7), Tiers.IRON.getSpeed(), Tiers.IRON.getAttackDamageBonus() * 1.2f, 5),
