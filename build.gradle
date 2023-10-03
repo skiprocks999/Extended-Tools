@@ -19,7 +19,7 @@ libsDirName = "../output"
 distsDirName = "../output"
 
 group = extendedtools_group
-version = extendedtools_version
+version = "${minecraft_version}-" + extendedtools_version
 
 base {
 
