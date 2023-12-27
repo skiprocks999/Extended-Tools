@@ -6,12 +6,13 @@ import net.minecraft.item.ItemStack;
 
 public class ItemGroupExtendedTools extends ItemGroup {
 
-    public ItemGroupExtendedTools(String label) {
-	super(label);
-    }
-
-    @Override
-    public ItemStack createIcon() {
-	return new ItemStack(DeferredRegisters.icon);
-    }
+	public ItemGroupExtendedTools(String label) {
+		super(label);
+	}
+	
+	@Override
+	public ItemStack makeIcon() {
+		return new ItemStack(DeferredRegisters.icon);
+	}
+	
 }
