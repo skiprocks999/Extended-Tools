@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iii",
+        "i i"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/lead"
+        }
+    },
+    "result": {
+        "id": "extendedtools:headlead",
+        "count": 1
+    }
+}

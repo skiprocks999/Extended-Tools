@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iii",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/titanium"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:pickaxetitanium",
+        "count": 1
+    }
+}

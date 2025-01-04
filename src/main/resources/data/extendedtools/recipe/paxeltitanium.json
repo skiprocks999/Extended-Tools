@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "extendedtools:pickaxetitanium"
+        },
+        "D": {
+            "item": "extendedtools:shoveltitanium"
+        },
+        "U": {
+            "item": "extendedtools:axetitanium"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxeltitanium",
+        "count": 1
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+		"i i",
+		"iii",
+		"iii"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/steel"
+        }
+    },
+    "result": {
+        "id": "extendedtools:cheststeel",
+        "count": 1
+    }
+}

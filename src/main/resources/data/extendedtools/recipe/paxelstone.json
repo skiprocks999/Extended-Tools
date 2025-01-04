@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone_pickaxe"
+        },
+        "D": {
+            "item": "minecraft:stone_shovel"
+        },
+        "U": {
+            "item": "minecraft:stone_axe"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxelstone",
+        "count": 1
+    }
+}

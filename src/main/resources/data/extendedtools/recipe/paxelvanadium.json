@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "extendedtools:pickaxevanadium"
+        },
+        "D": {
+            "item": "extendedtools:shovelvanadium"
+        },
+        "U": {
+            "item": "extendedtools:axevanadium"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxelvanadium",
+        "count": 1
+    }
+}

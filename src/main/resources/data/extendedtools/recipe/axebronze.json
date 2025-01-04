@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ii",
+        "i/",
+        " /"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/bronze"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:axebronze",
+        "count": 1
+    }
+}
