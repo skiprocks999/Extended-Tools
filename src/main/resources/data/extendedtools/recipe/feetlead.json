@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "i i",
+        "i i"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/lead"
+        }
+    },
+    "result": {
+        "id": "extendedtools:feetlead",
+        "count": 1
+    }
+}

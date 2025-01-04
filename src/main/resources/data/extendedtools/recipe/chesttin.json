@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+		"i i",
+		"iii",
+		"iii"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/tin"
+        }
+    },
+    "result": {
+        "id": "extendedtools:chesttin",
+        "count": 1
+    }
+}

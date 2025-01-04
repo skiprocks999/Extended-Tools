@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iii",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/lead"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:pickaxelead",
+        "count": 1
+    }
+}

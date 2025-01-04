@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "extendedtools:pickaxelead"
+        },
+        "D": {
+            "item": "extendedtools:shovellead"
+        },
+        "U": {
+            "item": "extendedtools:axelead"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxellead",
+        "count": 1
+    }
+}

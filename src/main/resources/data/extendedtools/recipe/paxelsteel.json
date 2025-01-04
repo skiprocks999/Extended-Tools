@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "extendedtools:pickaxesteel"
+        },
+        "D": {
+            "item": "extendedtools:shovelsteel"
+        },
+        "U": {
+            "item": "extendedtools:axesteel"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxelsteel",
+        "count": 1
+    }
+}

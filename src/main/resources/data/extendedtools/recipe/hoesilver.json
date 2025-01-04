@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ii",
+        " /",
+        " /"
+    ],
+    "key": {
+        "i": {
+            "tag": "c:ingots/silver"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:hoesilver",
+        "count": 1
+    }
+}

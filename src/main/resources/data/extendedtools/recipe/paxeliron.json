@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#DU",
+        " / ",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_pickaxe"
+        },
+        "D": {
+            "item": "minecraft:iron_shovel"
+        },
+        "U": {
+            "item": "minecraft:iron_axe"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "id": "extendedtools:paxeliron",
+        "count": 1
+    }
+}
