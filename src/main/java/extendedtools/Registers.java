@@ -80,7 +80,7 @@ public class Registers {
         }
 
         for (Tiers tier : Tiers.values()) {
-            DeferredHolder<Item, PaxelItem> obj = Registers.ITEMS.register("paxel" + tier.name().toLowerCase(), () -> new PaxelItem(tier, (tier == Tiers.NETHERITE ? new Properties().fireResistant() : new Properties())));
+            DeferredHolder<Item, PaxelItem> obj = Registers.ITEMS.register("paxel" + tier.name().toLowerCase(), () -> new PaxelItem(tier, (tier == Tiers.NETHERITE ? new Properties().stacksTo(1).fireResistant() : new Properties().stacksTo(1))));
             if (tier == Tiers.NETHERITE) {
                 ICON = obj;
             }
@@ -101,7 +101,7 @@ public class Registers {
                 if(type == ArmorItem.Type.BODY) {
                     continue;
                 }
-                ITEMS.register(ARMOR_MAP.get(type.getName()) + material.getName(), () -> new ArmorItem(materialMap.get(material), type, new Properties()));
+                ITEMS.register(ARMOR_MAP.get(type.getName()) + material.getName(), () -> new ArmorItem(materialMap.get(material), type, new Properties().stacksTo(1)));
             }
         }
 

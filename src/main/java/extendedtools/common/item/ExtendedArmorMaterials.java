@@ -1,5 +1,6 @@
 package extendedtools.common.item;
 
+import extendedtools.References;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ArmorItem;
@@ -38,7 +39,7 @@ public enum ExtendedArmorMaterials {
         this.toughness = toughness;
         this.knockbackRes = knockbackResistance;
         this.repairIng = repairIng;
-        layer = new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace(name));
+        layer = new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(References.ID, name));
     }
 
     public String getName() {
