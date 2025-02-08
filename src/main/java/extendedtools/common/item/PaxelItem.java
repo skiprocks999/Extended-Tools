@@ -4,8 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,7 +22,7 @@ import net.neoforged.neoforge.common.ItemAbility;
 public class PaxelItem extends DiggerItem {
 
     public PaxelItem(Tier tier, Properties prop) {
-        super(tier, BlockTags.MINEABLE_WITH_AXE, prop.durability(tier.getUses() * 2));
+        super(tier, Tags.PAXEL_BLOCKS, prop.durability(tier.getUses() * 2));
     }
 
     public InteractionResult useOn(UseOnContext context) {
