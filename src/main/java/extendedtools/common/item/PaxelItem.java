@@ -1,11 +1,11 @@
 package extendedtools.common.item;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,21 +19,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 public class PaxelItem extends DiggerItem {
 
     public PaxelItem(Tier tier, Properties prop) {
-        super(tier, Tags.PAXEL_BLOCKS, prop.durability(tier.getUses() * 2));
+        super(tier, BlockTags.MINEABLE_WITH_AXE, prop.durability(tier.getUses() * 2));
     }
 
-    @Override
-    public float getDestroySpeed(@Nonnull ItemStack stack, BlockState state) {
-        if (isCorrectToolForDrops(stack, state)) return getTier().getSpeed();
-        return 1;
-    }
-
-    @Nonnull
-    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -65,5 +58,10 @@ public class PaxelItem extends DiggerItem {
             }
         }
         return InteractionResult.sidedSuccess(world.isClientSide);
+    }
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+        return ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(itemAbility) || ItemAbilities.DEFAULT_AXE_ACTIONS.contains(itemAbility) || ItemAbilities.DEFAULT_SHOVEL_ACTIONS.contains(itemAbility);
     }
 }
