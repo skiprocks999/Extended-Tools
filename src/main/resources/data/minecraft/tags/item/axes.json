@@ -1,0 +1,27 @@
+{
+  "values": [
+    "extendedtools:axebronze",
+    "extendedtools:axecopper",
+    "extendedtools:axelead",
+    "extendedtools:axesilver",
+    "extendedtools:axesteel",
+    "extendedtools:axetin",
+    "extendedtools:axetitanium",
+    "extendedtools:axevanadium",
+
+    "extendedtools:paxelbronze",
+    "extendedtools:paxelcopper",
+    "extendedtools:paxellead",
+    "extendedtools:paxelsilver",
+    "extendedtools:paxelsteel",
+    "extendedtools:paxeltin",
+    "extendedtools:paxeltitanium",
+    "extendedtools:paxelvanadium",
+    "extendedtools:paxelwood",
+    "extendedtools:paxelstone",
+    "extendedtools:paxeliron",
+    "extendedtools:paxelgold",
+    "extendedtools:paxeldiamond",
+    "extendedtools:paxelnetherite"
+  ]
+}
