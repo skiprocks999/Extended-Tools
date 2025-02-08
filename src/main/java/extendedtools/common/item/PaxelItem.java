@@ -25,6 +25,7 @@ public class PaxelItem extends DiggerItem {
         super(tier, Tags.PAXEL_BLOCKS, prop.durability(tier.getUses() * 2));
     }
 
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
